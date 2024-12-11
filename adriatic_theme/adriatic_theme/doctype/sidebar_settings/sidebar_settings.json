@@ -1,0 +1,132 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-12-10 15:02:35.661895",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "menu_tab",
+  "section_break_nm5a",
+  "menu_font_family",
+  "menu_font_weight",
+  "show_sub_menu_icon",
+  "column_break_opdk",
+  "menu_font_size",
+  "menu_icon_size",
+  "section_break_teyg",
+  "navbar",
+  "layout_tab",
+  "background_color",
+  "background_color_hover",
+  "column_break_sfdy",
+  "foreground_color"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_nm5a",
+   "fieldtype": "Section Break",
+   "label": "Font"
+  },
+  {
+   "fieldname": "navbar",
+   "fieldtype": "Table",
+   "label": "Menu List",
+   "options": "Sidebar Settings Elements"
+  },
+  {
+   "fieldname": "layout_tab",
+   "fieldtype": "Tab Break",
+   "label": "Layout"
+  },
+  {
+   "fieldname": "background_color",
+   "fieldtype": "Color",
+   "label": "Background Color"
+  },
+  {
+   "fieldname": "foreground_color",
+   "fieldtype": "Color",
+   "label": "Foreground Color"
+  },
+  {
+   "fieldname": "column_break_sfdy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "background_color_hover",
+   "fieldtype": "Color",
+   "label": "background Color (Hover)"
+  },
+  {
+   "fieldname": "menu_tab",
+   "fieldtype": "Tab Break",
+   "label": "Menu"
+  },
+  {
+   "default": "0",
+   "fieldname": "show_sub_menu_icon",
+   "fieldtype": "Check",
+   "label": "Show Sub Menu Icon"
+  },
+  {
+   "default": "Roboto",
+   "fieldname": "menu_font_family",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Font Family",
+   "options": "SFMono-Regular\nMenlo\nMonaco\nConsolas\nLiberation Mono\nCourier New\nmonospace\n-apple-system\nBlinkMacSystemFont\nSegoe UI\nRoboto\nHelvetica Neue\nArial\nNoto Sans\nLiberation Sans\nsans-serif\nApple Color Emoji\nSegoe UI Emoji\nSegoe UI Symbol\nNoto Color Emoji",
+   "reqd": 1
+  },
+  {
+   "fieldname": "menu_font_weight",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Font Weight",
+   "options": "100\n200\n300\n400\n500\n600\n700\n800\n900",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_opdk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "menu_font_size",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Font Size",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_teyg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "menu_icon_size",
+   "fieldtype": "Data",
+   "label": "Icon Size"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2024-12-11 18:23:15.298084",
+ "modified_by": "Administrator",
+ "module": "Adriatic Theme",
+ "name": "Sidebar Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

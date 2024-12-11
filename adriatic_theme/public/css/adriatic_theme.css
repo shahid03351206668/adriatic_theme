@@ -1,0 +1,130 @@
+.navbar .container {
+    max-width: 100% !important;
+}
+
+.scroll-to-top.btn {
+    top: 0 !important;
+}
+
+.left-main-sidebar {
+    background-color: var(--sidebar-color);
+    color: var(--sidebar-text-color);
+    --sidebar-font-family: system-ui;
+    position: relative;
+}
+
+.left-main-sidebar .close-btn {
+    top: 15px;
+    right: -10px;
+    position: absolute;
+    padding: 0;
+    border-radius: 2rem;
+    padding: .5rem;
+    border: none;
+    box-shadow: 0 0 2px #000;
+    background-color: #f3f3f3;
+}
+
+
+.left-main-sidebar .close-btn svg {
+    height: 1.25rem;
+    width: 1.25rem;
+}
+
+.pg-sidebar {
+    width: 15rem;
+    padding: 5rem 1rem;
+    color: inherit;
+}
+
+.pg-sidebar.collapsed {
+    width: 4.3rem;
+}
+
+.pg-sidebar.collapsed .element-label,
+.pg-sidebar.collapsed .element-label__wrapper {
+    display: none;
+}
+
+.pg-sidebar.collapsed .pg-sidebar__nav-childs {
+    padding-inline: 0;
+}
+
+.pg-sidebar__nav-wrapper {
+    /* padding: .5rem;
+    border-radius: .5rem; */
+}
+
+.pg-sidebar__nav-element.active {
+    background: var(--bg-color-hover);
+}
+
+
+.pg-sidebar__nav-wrapper:hover {
+    cursor: pointer;
+}
+
+.pg-sidebar__nav-element:hover {
+    background: var(--bg-color-hover);
+    cursor: pointer;
+}
+
+.pg-sidebar__nav-childs {
+    margin-bottom: .5rem;
+    padding-left: 1.1rem;
+}
+
+.pg-sidebar__nav-childs .pg-sidebar__nav-wrapper {
+    border-left: 1px solid;
+}
+
+.pg-sidebar__nav-element {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    padding: .5rem;
+    border-radius: .5rem;
+    margin-bottom: .25rem;
+}
+
+.pg-sidebar__nav-element .element-icon svg {
+
+    height: var(--sidebar-icon-size);
+    width: var(--sidebar-icon-size);
+}
+
+.pg-sidebar__nav-element .element-label {
+    font-size: var(--sidebar-font-size) !important;
+    font-family: var(--sidebar-font-family) !important;
+    font-weight: var(--sidebar-font-weight) !important;
+}
+
+.pg-sidebar__nav-wrapper .element-label__wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex: auto;
+    align-items: center;
+}
+
+.page-head .page-head-content {
+    border: 1px solid lightgrey !important;
+    border-radius: .45rem !important;
+    margin-block: 1rem !important;
+}
+
+.result .list-row-head {
+    background: #daecff;
+    border: 1px solid #1587ff;
+    color: #0050a5 !important;
+    font-weight: 600;
+}
+
+.result .list-row-head {
+    color: #0050a5 !important;
+    font-weight: 600;
+}
+
+.form-control {
+    border: 1px solid #afafaf !important;
+    background: transparent !important;
+}

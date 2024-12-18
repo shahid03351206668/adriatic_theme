@@ -252,11 +252,6 @@ def after_install():
         settings.append(
             "navbar",
             {
-                "url": i.get("url"),
-                "label": i.get("title"),
-                "icon": i.get("icon"),
-                "parent_label": i.get("parent_label"),
-                "role": i.get("role"),
             },
         )
     for i in ["hr", "en-GB"]:

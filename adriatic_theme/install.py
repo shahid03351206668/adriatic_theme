@@ -23,7 +23,6 @@ DEFAULT_SETTINGS = {
     "listview_color": "#0050a5",
 }
 
-
 NAVBAR = [
     {
         "url": "/home",
@@ -183,7 +182,7 @@ THEME_COLORS = [
 ]
 
 
-def after_install(*args, **kwargs):
+def after_install():
     settings = frappe.get_doc("Sidebar Settings", "Sidebar Settings")
     settings.theme_colors = []
     settings.navbar = []

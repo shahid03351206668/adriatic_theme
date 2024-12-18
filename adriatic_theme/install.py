@@ -235,6 +235,7 @@ THEME_COLORS = [
     },
 ]
 
+
 def after_install():
     settings = frappe.get_doc("Sidebar Settings", "Sidebar Settings")
     settings.theme_colors = []
@@ -252,12 +253,24 @@ def after_install():
             "navbar",
             {
                 "url": i.get("url"),
-                "parent_label": i.get("parent_label"),
                 "label": i.get("title"),
                 "icon": i.get("icon"),
+                "parent_label": i.get("parent_label"),
                 "role": i.get("role"),
             },
         )
     for i in ["hr", "en-GB"]:
         settings.append("theme_setting_language", {"language": i})
+
+    frappe.db.set_value(
+        "Language",
+        "hr",
+        {"custom_flag_image": "/assets/adriatic_theme/assets/crotia_flag.png"},
+    )
+    frappe.db.set_value(
+        "Language",
+        "en-GB",
+        {"custom_flag_image": "/assets/adriatic_theme/assets/uk_flag.png"},
+    )
+    frappe.db.commit()
     settings.save()

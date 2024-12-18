@@ -236,7 +236,7 @@ THEME_COLORS = [
 ]
 
 
-def update_settings(*args, **kwargs):
+def update_settings():
     settings = frappe.get_doc("Sidebar Settings", "Sidebar Settings")
     settings.theme_colors = []
     settings.navbar = []

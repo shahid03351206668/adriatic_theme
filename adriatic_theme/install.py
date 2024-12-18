@@ -12,7 +12,7 @@ DEFAULT_SETTINGS = {
     "menu_font_weight": "500",
     "show_sub_menu_icon": 1,
     "menu_theme_color": "Theme Color",
-    "menu_font_size": 14,
+    "menu_font_size": 16,
     "menu_icon_size": "24",
     "menu_icons_size": "sm",
     "sidebar_layout": "separated",
@@ -23,13 +23,9 @@ DEFAULT_SETTINGS = {
     "listview_color": "#0050a5",
 }
 
+
 NAVBAR = [
-    {
-        "url": "/home",
-        "icon": "getting-started",
-        "title": "Home",
-        "role": "All",
-    },
+    {"url": "/home", "icon": "getting-started", "title": "Home", "role": "All"},
     {
         "url": "/accounting",
         "icon": "accounting",
@@ -44,12 +40,14 @@ NAVBAR = [
         "role": "Accounts Manager",
     },
     {
+        "parent_label": "Accounting",
         "url": "/receivables",
         "icon": "arrow-right",
         "title": "Receivables",
         "role": "Accounts Manager",
     },
     {
+        "parent_label": "Accounting",
         "url": "/financial-reports",
         "icon": "file",
         "title": "Financial Reports",
@@ -60,6 +58,48 @@ NAVBAR = [
     {"url": "/stock", "icon": "stock", "title": "Stock", "role": "Stock Manager"},
     {"url": "/assets", "icon": "assets", "title": "Assets", "role": "Quality Manager"},
     {"url": "/hr", "icon": "hr", "title": "HR", "role": "HR Manager"},
+    {
+        "parent_label": "HR",
+        "url": "/recruitment",
+        "icon": "users",
+        "title": "Recruitment",
+        "role": "HR Manager",
+    },
+    {
+        "parent_label": "HR",
+        "url": "/employee-lifecycle",
+        "icon": "assign",
+        "title": "Employee Lifecycle",
+        "role": "HR Manager",
+    },
+    {
+        "parent_label": "HR",
+        "url": "/performance",
+        "icon": "star",
+        "title": "Performance",
+        "role": "HR Manager",
+    },
+    {
+        "parent_label": "HR",
+        "url": "/shift-%26-attendance",
+        "icon": "milestone",
+        "title": "Shift & Attendance",
+        "role": "HR Manager",
+    },
+    {
+        "parent_label": "HR",
+        "url": "/expense-claims",
+        "icon": "expenses",
+        "title": "Expense Claims",
+        "role": "HR Manager",
+    },
+    {
+        "parent_label": "HR",
+        "url": "/leaves",
+        "icon": "non-profit",
+        "title": "Leaves",
+        "role": "HR Manager",
+    },
     {
         "url": "/manufacturing",
         "icon": "organization",
@@ -90,6 +130,20 @@ NAVBAR = [
         "url": "/payroll",
         "icon": "money-coins-1",
         "title": "Payroll",
+        "role": "HR Manager",
+    },
+    {
+        "parent_label": "Payroll",
+        "url": "/salary-payout",
+        "icon": "income",
+        "title": "Salary Payout",
+        "role": "HR Manager",
+    },
+    {
+        "parent_label": "Payroll",
+        "url": "/tax-%26-benefits",
+        "icon": "crm",
+        "title": "Tax & Benefits",
         "role": "HR Manager",
     },
     {"url": "/crm", "icon": "crm", "title": "CRM", "role": "Sales Master Manager"},
@@ -180,7 +234,6 @@ THEME_COLORS = [
         "selected": 0,
     },
 ]
-
 
 def after_install():
     settings = frappe.get_doc("Sidebar Settings", "Sidebar Settings")

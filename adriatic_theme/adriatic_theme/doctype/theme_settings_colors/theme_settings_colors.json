@@ -1,0 +1,88 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-12-14 16:53:17.338648",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "theme_name",
+  "listview_color",
+  "listview_background",
+  "foreground_color",
+  "background_color_hover",
+  "background_color",
+  "selected"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "listview_color",
+   "fieldtype": "Color",
+   "in_list_view": 1,
+   "label": "Listview Color",
+   "reqd": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "listview_background",
+   "fieldtype": "Color",
+   "in_list_view": 1,
+   "label": "Listview Background",
+   "reqd": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "foreground_color",
+   "fieldtype": "Color",
+   "in_list_view": 1,
+   "label": "Foreground Color",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "background_color_hover",
+   "fieldtype": "Color",
+   "in_list_view": 1,
+   "label": "background Color (Hover)",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "background_color",
+   "fieldtype": "Color",
+   "in_list_view": 1,
+   "label": "Background Color",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fieldname": "selected",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Selected",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "theme_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Theme Name",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-12-14 17:49:06.020768",
+ "modified_by": "Administrator",
+ "module": "Adriatic Theme",
+ "name": "Theme Settings Colors",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

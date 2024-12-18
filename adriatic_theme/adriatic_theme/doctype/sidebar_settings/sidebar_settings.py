@@ -6,4 +6,11 @@ from frappe.model.document import Document
 
 
 class SidebarSettings(Document):
-	pass
+    def validate(self):
+        for i in self.theme_colors:
+            if i.selected:
+                self.background_color = i.background_color
+                self.background_color_hover = i.background_color_hover
+                self.foreground_color = i.foreground_color
+                self.listview_background = i.listview_background
+                self.listview_color = i.listview_color

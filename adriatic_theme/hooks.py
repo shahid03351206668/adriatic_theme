@@ -26,7 +26,10 @@ app_license = "mit"
 
 # include js, css files in header of desk.html
 app_include_css = "/assets/adriatic_theme/css/adriatic_theme.css"
-app_include_js = "/assets/adriatic_theme/js/adriatic_theme.js"
+app_include_js = [
+    "/assets/adriatic_theme/js/adriatic_theme.js",
+    "/assets/adriatic_theme/js/horizontal_scroll.js",
+]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/adriatic_theme/css/adriatic_theme.css"
@@ -44,7 +47,7 @@ app_include_js = "/assets/adriatic_theme/js/adriatic_theme.js"
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
-# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+# doctype_list_js = {"Sales Invoice" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
@@ -83,7 +86,7 @@ app_include_js = "/assets/adriatic_theme/js/adriatic_theme.js"
 # ------------
 
 # before_install = "adriatic_theme.install.before_install"
-# after_install = "adriatic_theme.install.after_install"
+after_install = "adriatic_theme.install.after_install"
 
 # Uninstallation
 # ------------
@@ -241,3 +244,5 @@ app_include_js = "/assets/adriatic_theme/js/adriatic_theme.js"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
+
+fixtures = [{"dt": "Custom Field", "filters": {"module": "Adriatic Theme"}}]

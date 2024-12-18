@@ -12,6 +12,7 @@ def get_child_elements(value, dataset):
     for i in dataset:
         if i.get("parent_label") == value:
             ch.append(i)
+
     return ch
 
 
@@ -49,3 +50,13 @@ def get_sidebar_data():
 
     frappe.response["settings"] = frappe.get_doc("Sidebar Settings", "Sidebar Settings")
     frappe.response["data"] = data
+
+
+@frappe.whitelist()
+def get_theme_data():
+    languages_data = frappe.db.sql(
+        """ SELECT la.custom_flag_image as flag, s.language, la.name as language_id, la.language_name from `tabTheme Setting Language` s  INNER JOIN `tabLanguage` la on la.name = s.language  where 1=1 order by s.idx""",
+        as_dict=True,
+    )
+    frappe.response["languages"] = languages_data
+    frappe.response["data"] = frappe.get_doc("Sidebar Settings", "Sidebar Settings")

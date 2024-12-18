@@ -6,31 +6,46 @@
  "engine": "InnoDB",
  "field_order": [
   "menu_tab",
+  "navbar_settings_section",
+  "show_breadcrumbs",
+  "show_search_box",
+  "show_theme_settings",
+  "show_language_switcher",
+  "show_help_dropdown",
+  "show_logged_username",
+  "language_switcher_type",
   "section_break_nm5a",
   "menu_font_family",
   "menu_font_weight",
   "show_sub_menu_icon",
+  "menu_theme_color",
   "column_break_opdk",
   "menu_font_size",
   "menu_icon_size",
+  "menu_icons_size",
+  "sidebar_layout",
   "section_break_teyg",
   "navbar",
   "layout_tab",
   "background_color",
   "background_color_hover",
   "column_break_sfdy",
-  "foreground_color"
+  "foreground_color",
+  "section_break_slxo",
+  "listview_background",
+  "listview_color",
+  "section_break_fram",
+  "theme_colors",
+  "theme_setting_language"
  ],
  "fields": [
   {
    "fieldname": "section_break_nm5a",
-   "fieldtype": "Section Break",
-   "label": "Font"
+   "fieldtype": "Section Break"
   },
   {
    "fieldname": "navbar",
    "fieldtype": "Table",
-   "label": "Menu List",
    "options": "Sidebar Settings Elements"
   },
   {
@@ -98,18 +113,113 @@
   },
   {
    "fieldname": "section_break_teyg",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Menu List"
   },
   {
    "fieldname": "menu_icon_size",
    "fieldtype": "Data",
    "label": "Icon Size"
+  },
+  {
+   "fieldname": "navbar_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Navbar Settings"
+  },
+  {
+   "default": "0",
+   "fieldname": "show_search_box",
+   "fieldtype": "Check",
+   "label": "Show Search Box"
+  },
+  {
+   "default": "0",
+   "fieldname": "show_theme_settings",
+   "fieldtype": "Check",
+   "label": "Show Theme Settings"
+  },
+  {
+   "default": "0",
+   "fieldname": "show_language_switcher",
+   "fieldtype": "Check",
+   "label": "Show Language Switcher"
+  },
+  {
+   "fieldname": "language_switcher_type",
+   "fieldtype": "Select",
+   "label": "Language Switcher Type",
+   "options": "Flag With Title\nFlag Only\nTitle Only"
+  },
+  {
+   "default": "0",
+   "fieldname": "show_breadcrumbs",
+   "fieldtype": "Check",
+   "label": "Show Breadcrumbs"
+  },
+  {
+   "fieldname": "section_break_slxo",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "listview_background",
+   "fieldtype": "Color",
+   "label": "Listview Background"
+  },
+  {
+   "fieldname": "listview_color",
+   "fieldtype": "Color",
+   "label": "Listview Color"
+  },
+  {
+   "fieldname": "section_break_fram",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "theme_colors",
+   "fieldtype": "Table",
+   "label": "Theme Colors",
+   "options": "Theme Settings Colors"
+  },
+  {
+   "default": "0",
+   "fieldname": "show_help_dropdown",
+   "fieldtype": "Check",
+   "label": "Show Help Dropdown"
+  },
+  {
+   "default": "0",
+   "fieldname": "show_logged_username",
+   "fieldtype": "Check",
+   "label": "Show Logged Username"
+  },
+  {
+   "fieldname": "theme_setting_language",
+   "fieldtype": "Table",
+   "label": "Theme Setting Language",
+   "options": "Theme Setting Language"
+  },
+  {
+   "fieldname": "menu_theme_color",
+   "fieldtype": "Select",
+   "label": "Menu Theme Color",
+   "options": "Theme Color\nDark\nLight\nTransparent"
+  },
+  {
+   "fieldname": "menu_icons_size",
+   "fieldtype": "Select",
+   "label": "Icons Size",
+   "options": "sm\nmd"
+  },
+  {
+   "fieldname": "sidebar_layout",
+   "fieldtype": "Data",
+   "label": "sidebar_layout"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-12-11 18:23:15.298084",
+ "modified": "2024-12-17 19:36:12.436779",
  "modified_by": "Administrator",
  "module": "Adriatic Theme",
  "name": "Sidebar Settings",

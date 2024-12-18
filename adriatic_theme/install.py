@@ -252,6 +252,7 @@ def after_install():
             "navbar",
             {
                 "url": i.get("url"),
+                "parent_label": i.get("parent_label"),
                 "label": i.get("title"),
                 "icon": i.get("icon"),
                 "role": i.get("role"),

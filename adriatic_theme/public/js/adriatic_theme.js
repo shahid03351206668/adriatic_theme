@@ -175,7 +175,6 @@ class Sidebar {
         --listview-color: ${this.sidebarSettings?.listview_color};
         --btn-primary: ${this.sidebarSettings?.background_color};
         --theme-primary-color-bg: ${this.sidebarSettings?.background_color};  ${sidebarCSSVariables}`;
-        // console.log(this.$sidebarWrapper)
 
         // document?.querySelector(`[data - theme= light]`)?.style.cssText = `--listview - color - bg: ${ this.sidebarSettings?.listview_background };
         // --listview-color: ${this.sidebarSettings?.listview_color};
@@ -196,7 +195,6 @@ class LanguagePicker {
     }
     setup_picker() {
         const data = this.languages;
-        console.log(data)
         if ($("#language-picker").length) {
             return;
         }
@@ -258,11 +256,7 @@ class AdriaticTheme {
     }
 
     setup_search_bar() {
-        console.log(window.screen.width)
         if (window.screen.width <= 768) {
-            // return;
-
-            // console.log("setting search bar")
             if ($("#search-box-wrapper").length) {
                 return;
             }

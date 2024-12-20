@@ -156,9 +156,18 @@ input[type=checkbox]:disabled:checked {
 }
 
 .pg-sidebar {
-    width: 14rem;
+    width: 15rem;
     padding: 5rem 1rem;
     color: inherit;
+}
+
+.pg-sidebar {
+    height: calc(100vh - 1rem);
+    overflow-y: scroll;
+}
+
+.pg-sidebar::-webkit-scrollbar {
+    display: none;
 }
 
 
@@ -279,6 +288,20 @@ input[type=checkbox]:disabled:checked {
     color: var(--sidebar-text-color);
     border: none;
 }
+
+/* .left-main-sidebar {
+    height: calc(100vh - 1rem);
+    overflow-y: scroll;
+} */
+
+/* 
+.left-main-sidebar::-webkit-scrollbar {
+    display: none !important;
+}
+
+.pg-sidebar::-webkit-scrollbar {
+    display: none !important;
+} */
 
 @media (max-width: 768px) {
     .left-main-sidebar.separated {

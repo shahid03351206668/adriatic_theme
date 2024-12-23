@@ -19,6 +19,7 @@
   "menu_font_weight",
   "show_sub_menu_icon",
   "menu_theme_color",
+  "menu_style_type",
   "column_break_opdk",
   "menu_font_size",
   "menu_icon_size",
@@ -214,12 +215,17 @@
    "fieldname": "sidebar_layout",
    "fieldtype": "Data",
    "label": "sidebar_layout"
+  },
+  {
+   "fieldname": "menu_style_type",
+   "fieldtype": "Data",
+   "label": "Menu Style Type"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-12-17 19:36:12.436779",
+ "modified": "2024-12-23 17:25:58.674240",
  "modified_by": "Administrator",
  "module": "Adriatic Theme",
  "name": "Sidebar Settings",

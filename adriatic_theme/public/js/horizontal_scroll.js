@@ -1,7 +1,4 @@
 function applyCustomStyles($page) {
-    if (!window.innerWidth >= 768) {
-        return
-    }
 
     // $page.find('.frappe-list .list-row-col').css({
     //     'min-width': '120px',
@@ -53,12 +50,15 @@ frappe.views.ListView.prototype.refresh = function (listview) {
         return;
     }
 
+    if (window.innerWidth < 768) {
+        return
+    }
+
     if (this.columns.length < 6) {
         return;
     }
 
     const $list = $page.find(".layout-main-section.frappe-card  .frappe-list");
-
     if ($list.hasClass("frappe-list-horizontal")) {
         return;
     }

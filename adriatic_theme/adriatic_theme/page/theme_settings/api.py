@@ -25,6 +25,7 @@ def update_settings(request_data):
     settings.show_language_switcher = request_data.get("show_language_switcher")
     settings.show_breadcrumbs = request_data.get("show_breadcrumbs")
     settings.show_search_box = request_data.get("show_search_box")
+    settings.menu_style_type = request_data.get("menu_style_type")
     settings.show_sub_menu_icon = request_data.get("show_sub_menu_icon")
     settings.menu_font_family = request_data.get("menu_font_family")
     settings.show_theme_settings = request_data.get("show_theme_settings")

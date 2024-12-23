@@ -32,7 +32,6 @@ app_include_css = [
 
 app_include_js = [
     "/assets/adriatic_theme/js/adriatic_theme.js",
-    "/assets/adriatic_theme/js/bootstrap-toggle.min.js",
     "/assets/adriatic_theme/js/horizontal_scroll.js",
 ]
 

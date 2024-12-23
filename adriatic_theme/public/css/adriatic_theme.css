@@ -304,6 +304,12 @@ input[type=checkbox]:disabled:checked {
 } */
 
 @media (max-width: 768px) {
+
+
+    .search-bar {
+        max-width: 200px;
+    }
+
     .left-main-sidebar.separated {
         margin: 0;
     }
@@ -360,4 +366,3 @@ input[type=checkbox]:disabled:checked {
         max-width: 1240px !important;
     }
 }
-

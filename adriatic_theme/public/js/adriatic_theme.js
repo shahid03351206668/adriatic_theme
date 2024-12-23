@@ -3,6 +3,7 @@ class Sidebar {
     constructor() {
         this.$body = $("#body");
         this.iconSize = "sm"
+        this.settings = {};
         this.downArrowIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>`;
         this.upArrowIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-md"><path d="m18 15-6-6-6 6"/></svg>`
 
@@ -10,6 +11,7 @@ class Sidebar {
 
         this.fetch_sidebar_data().then((response) => {
             const { settings, data } = response;
+            this.settings = settings;
             this.iconSize = settings.menu_icons_size || "sm";
             this.sidebarLinks = data;
             this.sidebarSettings = settings;
@@ -19,7 +21,6 @@ class Sidebar {
                 () => this.render_sidebar(),
             ])
         })
-
     }
     setup_mobile_menu() {
         const self = this
@@ -60,20 +61,7 @@ class Sidebar {
         })
     }
 
-    load_sidebar_links() {
-        return new Promise(function (resolve, reject,) {
-            frappe.call({
-                method: "adriatic_theme.api.get_sidebar_data",
-                callback(response) {
-                    const { data } = response;
-                    resolve(data);
-                },
-                error(error) {
-                    reject(error)
-                }
-            })
-        })
-    }
+
     make_nav_element(data, showIcon = true) {
         const $wrapper = $(`<div class="pg-sidebar__nav-wrapper ${window.location.pathname == data.url ? "active" : ""} "></div>`)
         let $element = $(`<div class="pg-sidebar__nav-element">
@@ -84,8 +72,7 @@ class Sidebar {
                 <div class="element-label">${__(data.label)}</div>
             </div>`);
 
-
-        if (data.childs) {
+        if (this.settings?.menu_style_type == "Tree" && data.childs) {
             const $childs = $(`<div class="pg-sidebar__nav-childs hide"></div>`)
             data.childs.forEach(child => {
                 $childs.append(this.make_nav_element(child, this.sidebarSettings?.show_sub_menu_icon))

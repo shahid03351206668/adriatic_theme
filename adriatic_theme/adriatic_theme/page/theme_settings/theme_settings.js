@@ -63,6 +63,7 @@ const checkboxes = [
 ]
 const selectField = [
 	"language_switcher_type",
+	"menu_style_type",
 	"menu_icons_size",
 	"menu_font_weight",
 	"menu_theme_color",
@@ -94,12 +95,13 @@ frappe.pages['theme-settings'].on_page_load = function ($wrapper) {
 		"assets/adriatic_theme/js/bootstrap-toggle.min.js",
 		"assets/adriatic_theme/js/Sortable.min.js",
 		"assets/adriatic_theme/css/bootstrap-toggle.min.css",
-	]);
+	]).then(d => {
 
 
-	$($wrapper)
-		.find(".row.layout-main")
-		.append(`<div class="pg-container tabs-container" style="flex:auto;padding-bottom:4rem;">
+
+		$($wrapper)
+			.find(".row.layout-main")
+			.append(`<div class="pg-container tabs-container" style="flex:auto;padding-bottom:4rem;">
 	<div class="nav-tab" id="layout-settings-tab">
 		<div>
 			<div class="text-large font-weight-bold mb-4">${__("Theme Color")}</div>
@@ -183,12 +185,25 @@ frappe.pages['theme-settings'].on_page_load = function ($wrapper) {
 	</div>
 
 	<div class="nav-tab" id="menu-settings-tab" style="display: none;">
-		<div style="max-width:800px">
-			<div class="flex justify-content-between px-4 align-items-center">
+		<div style="max-width:800px" class="px-4">
+		
+		
+			<div class="flex justify-content-between  align-items-center">
 				<div class="text-large">${__("Show Sub Modules Icon")}</div>
 				<input type="checkbox" class="settings_field" data-toggle="toggle" id="show-sub-modules"
 					data-fieldname="show_sub_menu_icon">
 			</div>
+		
+			<br>
+		<div  class="flex justify-content-between  align-items-center">
+			<div class="mb-2">${__("Menu Style")}</div>
+			<select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis settings_field"
+				id="menu-style-type" style="width: 150px;" data-fieldname="menu_style_type">
+				<option value="Tree">Tree</option>
+				<option value="List">List</option>
+			</select>
+		</div>
+
 		</div>
 		<br><br>
 		<div class="menu-container">
@@ -269,60 +284,57 @@ frappe.pages['theme-settings'].on_page_load = function ($wrapper) {
 	</div>
 </div>`);
 
-	make_page_sidebar();
-	const params = new URLSearchParams(window.location.search);
-	if (params.get("current_tab")) {
-		$(`.sidebar-navchild[data-tab-id="${params.get("current_tab")}"]`).click();
+		make_page_sidebar();
+		const params = new URLSearchParams(window.location.search);
+		if (params.get("current_tab")) {
+			$(`.sidebar-navchild[data-tab-id="${params.get("current_tab")}"]`).click();
 
-	}
-	// handle_theme_color_click()
-
-	menuListObject = new MenuList();
-	LanguageListObject = new LanguageListMenu();
-	const $addMenuRow = $("#add-menu-item");
-	// const $updateMenu = $("#update-menu");
-	const $showSubModules = $("#show-sub-modules")
-	const $saveBtn = page.set_primary_action(__('Save'), () => {
-
-		frappe.confirm('Are you sure you want to proceed?',
-			() => {
-				updateSettings()
-			}, () => {
-				// action to perform if No is selected
-			})
-
-	})
-
-	$addMenuRow.click(function () { menuListObject.addRow(); })
-	// $updateMenu.click(function () { menuListObject.update(); })
-	$(document).delegate(".layout-option", "click", function () {
-		$(".layout-option").removeClass("active");
-		$(this).addClass("active");
-		SETTINGS_DATA["sidebar_layout"] = $(this).attr("data-option-name");
-	})
-
-
-	renderThemeColors();
-	handleFieldsChange();
-	const $menuBtn = $(`<span class="mr-2" id="page-cs-menu-btn">${frappe.utils.icon("menu", "md")}</span>`)
-
-
-	$menuBtn.click(function (e) {
-		e.stopPropagation();
-		$(".sidebar-wrapper").addClass("active");
-	})
-
-	$(document).click(function (e) {
-		if (!$(e.target).closest(".sidebar-wrapper").length && !$(e.target).is($menuBtn)) {
-			$(".sidebar-wrapper").removeClass("active");
 		}
-	});
+		// handle_theme_color_click()
 
-	$("#page-theme-settings .page-head-content .title-area .flex").prepend($menuBtn);
+		menuListObject = new MenuList();
+		LanguageListObject = new LanguageListMenu();
+		const $addMenuRow = $("#add-menu-item");
 
-	setTimeout(() => {
-		loadSettings();
-	}, 500);
+		page.set_primary_action(__('Save'), () => {
+
+			frappe.confirm('Are you sure you want to proceed?',
+				() => {
+					updateSettings()
+				}, () => {
+					// action to perform if No is selected
+				})
+
+		})
+
+		$addMenuRow.click(function () { menuListObject.addRow(); })
+		$(document).delegate(".layout-option", "click", function () {
+			$(".layout-option").removeClass("active");
+			$(this).addClass("active");
+			SETTINGS_DATA["sidebar_layout"] = $(this).attr("data-option-name");
+		})
+
+		renderThemeColors();
+		handleFieldsChange();
+		const $menuBtn = $(`<span class="mr-2" id="page-cs-menu-btn">${frappe.utils.icon("menu", "md")}</span>`)
+		$menuBtn.click(function (e) {
+			e.stopPropagation();
+			$(".sidebar-wrapper").addClass("active");
+		})
+
+		$(document).click(function (e) {
+			if (!$(e.target).closest(".sidebar-wrapper").length && !$(e.target).is($menuBtn)) {
+				$(".sidebar-wrapper").removeClass("active");
+			}
+		});
+
+		$("#page-theme-settings .page-head-content .title-area .flex").prepend($menuBtn);
+
+		setTimeout(() => {
+			loadSettings();
+		}, 500);
+
+	})
 }
 
 

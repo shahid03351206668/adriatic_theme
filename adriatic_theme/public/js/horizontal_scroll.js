@@ -2,50 +2,66 @@ function applyCustomStyles($page) {
     if (!window.innerWidth >= 768) {
         return
     }
-    // $(".main-section").css("overflow-x", "hidden");
-    // $('.frappe-list .list-row-col').css({
+
+    // $page.find('.frappe-list .list-row-col').css({
     //     'min-width': '120px',
-    //     'max-width': 'max-content'
+    //     'max-width': '120px'
     // });
 
-    // $('.list-subject').css({
+    // $page.find('.list-subject').css({
     //     'min-width': '200px',
     //     'max-width': '200px'
     // });
-    // $('.frappe-list').css('overflow-x', 'auto');
-    // $('.list-row-head, .list-row-container').css('width', 'max-content');
+    // $page.find('.frappe-list').css('overflow-x', 'auto');
+    // $page.find('.list-row-head, .list-row-container').css('width', 'max-content');
+    // $page.find('.level-right .list-count').css('white-space', 'nowrap');
 
-    // $(".main-section").css("overflow-x", "hidden");
+
+    // $page.find('.frappe-list .list-row-col').css({
+    //     'min-width': 'auto',
+    //     "width": "200px",
+    //     'max-width': 'auto',
+    // });
+
+    // $page.find('.list-subject').css({
+    //     'min-width': 'auto',
+    //     "width": "200px",
+    //     'max-width': 'auto',
+    // });
 
     $page.find('.frappe-list .list-row-col').css({
-        'min-width': '120px',
-        'max-width': '120px'
+        "width": "200px !important",
+        "max-width": "100%",
     });
 
-    $page.find('.list-subject').css({
-        'min-width': '200px',
-        'max-width': '200px'
+    $page.find('.frappe-list .list-subject').css({
+        "width": "300px !important",
+        "max-width": "100%",
     });
+
+
     $page.find('.frappe-list').css('overflow-x', 'auto');
-    $page.find('.list-row-head, .list-row-container').css('width', 'max-content');
-    // $page.find('.list-row, .level-right').css('flex', '0');
-    $page.find('.level-right .list-count').css('white-space', 'nowrap');
-
+    $page.find('.frappe-list .result').css({ width: "2000px" });
 }
 
 const original_refresh = frappe.views.ListView.prototype.refresh;
 frappe.views.ListView.prototype.refresh = function (listview) {
     original_refresh.call(this);
     const $page = this.$page;
-    if (!$page) return;
-    if (this.columns.length >= 8) {
-        let i = 0
-        while (i < 5) {
-            applyCustomStyles($page);
-            setTimeout(() => {
-                applyCustomStyles($page)
-            }, 1000);
-            i++;
-        }
+
+    if (!$page) {
+        return;
     }
+
+    if (this.columns.length < 6) {
+        return;
+    }
+
+    const $list = $page.find(".layout-main-section.frappe-card  .frappe-list");
+
+    if ($list.hasClass("frappe-list-horizontal")) {
+        return;
+    }
+
+    $list.addClass("frappe-list-horizontal");
 };

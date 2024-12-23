@@ -25,9 +25,14 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-app_include_css = "/assets/adriatic_theme/css/adriatic_theme.css"
+app_include_css = [
+    "/assets/adriatic_theme/css/adriatic_theme.css",
+    "/assets/adriatic_theme/css/horizontal_scroll.css",
+]
+
 app_include_js = [
     "/assets/adriatic_theme/js/adriatic_theme.js",
+    "/assets/adriatic_theme/js/bootstrap-toggle.min.js",
     "/assets/adriatic_theme/js/horizontal_scroll.js",
 ]
 

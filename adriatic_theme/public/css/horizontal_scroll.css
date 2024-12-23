@@ -1,0 +1,31 @@
+.frappe-list-horizontal {
+    overflow-x: scroll;
+}
+
+.frappe-list-horizontal .result {
+    width: 2000px;
+}
+
+.frappe-list-horizontal .list-row-col {
+    flex: unset;
+    margin-right: 15px;
+    width: 200px !important;
+    max-width: 100%;
+}
+
+.frappe-list-horizontal .list-subject {
+    flex: unset;
+    justify-content: start;
+    width: 300px !important;
+}
+
+.frappe-list-horizontal .list-row .level-left,
+.frappe-list-horizontal .list-row-head .level-left {
+    min-width: 80%;
+    flex-basis: 90%;
+}
+
+.frappe-list-horizontal .list-row .level-right,
+.frappe-list-horizontal .list-row-head .level-right {
+    flex-basis: 10%;
+}

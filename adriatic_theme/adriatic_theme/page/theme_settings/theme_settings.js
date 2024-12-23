@@ -282,7 +282,16 @@ frappe.pages['theme-settings'].on_page_load = function ($wrapper) {
 	const $addMenuRow = $("#add-menu-item");
 	// const $updateMenu = $("#update-menu");
 	const $showSubModules = $("#show-sub-modules")
-	const $saveBtn = page.set_primary_action(__('Save'), () => updateSettings())
+	const $saveBtn = page.set_primary_action(__('Save'), () => {
+
+		frappe.confirm('Are you sure you want to proceed?',
+			() => {
+				updateSettings()
+			}, () => {
+				// action to perform if No is selected
+			})
+
+	})
 
 	$addMenuRow.click(function () { menuListObject.addRow(); })
 	// $updateMenu.click(function () { menuListObject.update(); })
@@ -342,6 +351,7 @@ function updateSettings() {
 
 	frappe.call({
 		method: "adriatic_theme.adriatic_theme.page.theme_settings.api.update_settings",
+		freeze: true,
 		args: {
 			request_data: payload
 		},
@@ -354,9 +364,8 @@ function updateSettings() {
 }
 
 function loadSettings() {
-	frappe.dom.freeze()
+	frappe.dom.freeze();
 	frappe.db.get_doc("Sidebar Settings", "Sidebar Settings").then(res => {
-		frappe.dom.unfreeze();
 
 		const doc = res;
 		const currentTheme = doc.theme_colors.find(v => v.selected);
@@ -385,9 +394,10 @@ function loadSettings() {
 			const value = doc[v];
 			SETTINGS_DATA[v] = value;
 			if (value) {
-				$(`input[data-fieldname="${v}"]`).bootstrapToggle('on');
+				$(`input[data-fieldname="${v}"]`)?.bootstrapToggle('on');
 			}
 		})
+		frappe.dom.unfreeze();
 	})
 }
 

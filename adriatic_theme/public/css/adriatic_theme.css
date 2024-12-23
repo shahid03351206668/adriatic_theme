@@ -335,3 +335,29 @@ input[type=checkbox]:disabled:checked {
     }
 
 }
+
+
+@media (min-width: 576px) {
+    .container.page-body {
+        max-width: 490px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .container.page-body {
+        max-width: 790px !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .container.page-body {
+        max-width: 1050px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container.page-body {
+        max-width: 1240px !important;
+    }
+}
+

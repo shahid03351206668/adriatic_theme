@@ -199,19 +199,19 @@ class LanguagePicker {
             return;
         }
         const currentLanguage = data?.find((val) => val.language_id === frappe.boot.user.language);
-        if (!currentLanguage) { return }
+        // if (!currentLanguage) { return }
 
         let hide_flag = "";
         let hide_title = ""
         if (this.type == "Flag Only") { hide_title = "hidden" }
         else if (this.type == "Title Only") { hide_flag = "hidden" }
-
+        const NO_FLAG_IMG = "https://cdn-icons-png.flaticon.com/512/2958/2958792.png";
         const $picker = $(`<li class="nav-item dropdown d-lg-block show" id="language-picker">
                 <button class="btn-reset nav-link" data-toggle="dropdown" aria-controls="languge-picker" aria-label="languge Picker"
                     aria-expanded="true">
                     <span>
-                    <img class="${hide_flag} language-picker-label-image"  style="" src="${currentLanguage.flag || "https://cdn-icons-png.flaticon.com/512/2958/2958792.png"}">
-                    <span class="hidden-sm">${currentLanguage?.language_name}</span>
+                    <img class="${hide_flag} language-picker-label-image"  style="" src="${currentLanguage?.flag || NO_FLAG_IMG}">
+                    <span class="hidden-sm ${hide_title}">${currentLanguage?.language_name || "Select"}</span>
                      <svg class="es-icon icon-xs"><use href="#es-line-down"></use></svg> </span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right " id="languge-picker" role="menu"></div>

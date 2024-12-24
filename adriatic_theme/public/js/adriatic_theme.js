@@ -206,6 +206,14 @@ class LanguagePicker {
 
         const $pickerOptions = $picker.find("#languge-picker");
 
+
+        if (hide_title == "hidden") {
+            $picker.find("#languge-picker").css({
+                "max-width": "max-content",
+                "min-width": "max-content"
+            })
+        }
+
         data?.forEach(row => {
             const $opt = $(`<div class="dropdown-item">
             <div class="flex align-items-center language-picker-option" >
@@ -243,6 +251,8 @@ class AdriaticTheme {
     }
 
     setup_search_bar() {
+        if (!this.show_search_box) return;
+
         if (window.screen.width <= 768) {
             if ($("#search-box-wrapper").length) {
                 return;
@@ -299,7 +309,9 @@ class AdriaticTheme {
     apply_theme_settings() {
         this.remove_workspace_sidebar();
         this.get_theme_settings().then(response => {
-            const { languages } = response;
+            console.warn(response)
+            const { languages, data } = response;
+
             this.languages = languages;
             const {
                 show_search_box,
@@ -308,8 +320,11 @@ class AdriaticTheme {
                 language_switcher_type,
                 show_help_dropdown,
                 show_breadcrumbs,
+
                 show_logged_username,
             } = response.data;
+
+            this.show_search_box = show_search_box;
 
             if (!show_help_dropdown) {
                 $(".nav-item.dropdown-help").remove();
@@ -328,7 +343,9 @@ class AdriaticTheme {
 
             if (show_theme_settings) { this.insert_settings_option() }
             if (show_logged_username) { this.setup_user_profile_icon() }
-            this.setup_search_bar()
+            if (show_search_box) {
+                this.setup_search_bar()
+            }
         })
     }
 

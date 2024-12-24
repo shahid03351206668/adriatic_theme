@@ -333,7 +333,13 @@ input[type=checkbox]:disabled:checked {
     }
 
     .left-main-sidebar.show-mobile {
+        top: 0;
+        bottom: 0;
         left: 0;
+    }
+
+    .left-main-sidebar.show-mobile .pg-sidebar {
+        height: 100%;
     }
 
     .left-main-sidebar .pg-sidebar {

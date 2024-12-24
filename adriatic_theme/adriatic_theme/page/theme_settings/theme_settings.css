@@ -222,6 +222,7 @@ img {
     .sidebar-wrapper {
         position: absolute;
         z-index: 9;
+
         bottom: 0;
         top: 0;
         left: -100%;
@@ -229,5 +230,15 @@ img {
 
     .sidebar-wrapper.active {
         left: -1rem;
+    }
+
+    #page-theme-settings .title-area {
+        align-items: center !important;
+    }
+
+    #page-theme-settings .title-area .title-text {
+        margin-top: .1rem;
+        font-size: 1rem;
+        max-width: 100%;
     }
 }

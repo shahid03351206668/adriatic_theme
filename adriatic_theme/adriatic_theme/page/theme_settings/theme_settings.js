@@ -93,8 +93,8 @@ frappe.pages['theme-settings'].on_page_load = function ($wrapper) {
 
 	frappe.require([
 		"assets/adriatic_theme/js/bootstrap-toggle.min.js",
-		"assets/adriatic_theme/js/Sortable.min.js",
 		"assets/adriatic_theme/css/bootstrap-toggle.min.css",
+		"assets/adriatic_theme/js/Sortable.min.js",
 	]).then(d => {
 
 
@@ -186,17 +186,14 @@ frappe.pages['theme-settings'].on_page_load = function ($wrapper) {
 
 	<div class="nav-tab" id="menu-settings-tab" style="display: none;">
 		<div style="max-width:800px" class="px-4">
-		
-		
 			<div class="flex justify-content-between  align-items-center">
 				<div class="text-large">${__("Show Sub Modules Icon")}</div>
 				<input type="checkbox" class="settings_field" data-toggle="toggle" id="show-sub-modules"
 					data-fieldname="show_sub_menu_icon">
 			</div>
-		
 			<br>
 		<div  class="flex justify-content-between  align-items-center">
-			<div class="mb-2">${__("Menu Style")}</div>
+			<div class="mb-2 text-large">${__("Menu Style")}</div>
 			<select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis settings_field"
 				id="menu-style-type" style="width: 150px;" data-fieldname="menu_style_type">
 				<option value="Tree">Tree</option>

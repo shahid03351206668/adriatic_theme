@@ -159,9 +159,7 @@ input[type=checkbox]:disabled:checked {
     width: 15rem;
     padding: 5rem 1rem;
     color: inherit;
-}
-
-.pg-sidebar {
+    scrollbar-width: none;
     height: calc(100vh - 1rem);
     overflow-y: scroll;
 }
@@ -304,7 +302,9 @@ input[type=checkbox]:disabled:checked {
 } */
 
 @media (max-width: 768px) {
-
+    .language-picker-option {
+        font-size: .7rem;
+    }
 
     .search-bar {
         max-width: 200px;
@@ -333,6 +333,7 @@ input[type=checkbox]:disabled:checked {
     }
 
     .left-main-sidebar.show-mobile {
+        min-height: 100dvh;
         top: 0;
         bottom: 0;
         left: 0;

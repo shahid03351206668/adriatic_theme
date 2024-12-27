@@ -212,6 +212,7 @@ img {
 
 #page-cs-menu-btn {
     display: none;
+    
 }
 
 @media(max-width:768px) {
@@ -222,13 +223,13 @@ img {
     .sidebar-wrapper {
         position: absolute;
         z-index: 9;
-
         bottom: 0;
         top: 0;
         left: -100%;
     }
 
     .sidebar-wrapper.active {
+        
         left: -1rem;
     }
 

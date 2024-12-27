@@ -333,7 +333,9 @@ input[type=checkbox]:disabled:checked {
     }
 
     .left-main-sidebar.show-mobile {
+        position: fixed;
         min-height: 100dvh;
+        padding-top: 2rem;
         top: 0;
         bottom: 0;
         left: 0;

@@ -25,7 +25,6 @@ class Sidebar {
     setup_mobile_menu() {
         const self = this
         if (!$("#mobile-menu-btn").length) {
-
             const $menuBtn = $(`<div id="mobile-menu-btn" >${frappe.utils.icon("menu", 'md')}</div>`);
             $menuBtn.click(function () {
                 self.$sidebarWrapper.toggleClass("show-mobile");
@@ -33,9 +32,9 @@ class Sidebar {
 
             $(".navbar.navbar-expand .container").prepend($menuBtn);
         }
-
     }
     render_sidebar() {
+
         const $sidebar = $(`<div class="pg-sidebar"></div>`);
         const $nav = $(`<div class="pg-sidebar__nav"></div>`);
 
@@ -45,7 +44,18 @@ class Sidebar {
 
         $sidebar.append($nav);
         this.$sidebarWrapper.append($sidebar);
+
+        if (window.innerWidth <= 768) {
+            document.body.addEventListener("click", (event) => {
+                console.log("event")
+                if (!event.target.closest("#mobile-menu-btn") && !event.target.closest(".left-main-sidebar") && $(".left-main-sidebar").hasClass("show-mobile")) {
+                    $(".left-main-sidebar").removeClass("show-mobile")
+                }
+            });
+
+        }
     }
+
     fetch_sidebar_data() {
         return new Promise(function (resolve, reject,) {
             frappe.call({
@@ -63,9 +73,9 @@ class Sidebar {
 
 
     make_nav_element(data, showIcon = true) {
+        const self = this;
         const $wrapper = $(`<div class="pg-sidebar__nav-wrapper ${window.location.pathname == data.url ? "active" : ""} "></div>`)
-        let $element = $(`<div class="pg-sidebar__nav-element">
-            
+        let $element = $(`<div class="pg-sidebar__nav-element">            
             <div class="element-icon ${!showIcon ? "hide" : ""}">
             ${frappe.utils.icon(data?.icon || "folder-normal",)}
             </div>
@@ -77,12 +87,12 @@ class Sidebar {
             data.childs.forEach(child => {
                 $childs.append(this.make_nav_element(child, this.sidebarSettings?.show_sub_menu_icon))
             })
-
-            $wrapper.append($childs)
+            $wrapper.append($childs);
             $element = $(`<div class="pg-sidebar__nav-element">
             <div class="element-icon ${!showIcon ? "hide" : ""} ">
                 ${frappe.utils.icon(data?.icon || "folder-normal")}
             </div>
+            
                 <div class="element-label__wrapper">
                     <div class="element-label">${__(data.label)}</div>
                     <div class="nav-element-action">
@@ -92,12 +102,15 @@ class Sidebar {
             </div>
             `);
 
-            const _this = this;
-
             $element.find(".nav-element-action").click(function () {
-                _this.handle_navitem_click($(this));
+                self.handle_navitem_click($(this));
             })
         }
+
+
+        $($element).find(".element-label").click(function () {
+            self.$sidebarWrapper.toggleClass("show-mobile");
+        })
 
         $element.click(function () {
             $(".pg-sidebar__nav-element").removeClass("active");
@@ -193,6 +206,7 @@ class LanguagePicker {
         if (this.type == "Flag Only") { hide_title = "hidden" }
         else if (this.type == "Title Only") { hide_flag = "hidden" }
         const NO_FLAG_IMG = "https://cdn-icons-png.flaticon.com/512/2958/2958792.png";
+
         const $picker = $(`<li class="nav-item dropdown d-lg-block show" id="language-picker">
                 <button class="btn-reset nav-link" data-toggle="dropdown" aria-controls="languge-picker" aria-label="languge Picker"
                     aria-expanded="true">
@@ -204,9 +218,8 @@ class LanguagePicker {
                 <div class="dropdown-menu dropdown-menu-right " id="languge-picker" role="menu"></div>
         </li>`)
 
+
         const $pickerOptions = $picker.find("#languge-picker");
-
-
         if (hide_title == "hidden") {
             $picker.find("#languge-picker").css({
                 "max-width": "max-content",

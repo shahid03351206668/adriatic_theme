@@ -301,10 +301,11 @@ input[type=checkbox]:disabled:checked {
     display: none !important;
 } */
 
+.language-picker-option {
+    font-size: .7rem;
+}
+
 @media (max-width: 768px) {
-    .language-picker-option {
-        font-size: .7rem;
-    }
 
     .search-bar {
         max-width: 200px;

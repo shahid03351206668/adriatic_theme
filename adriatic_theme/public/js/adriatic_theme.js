@@ -1,19 +1,18 @@
-
 class Sidebar {
     constructor() {
+        this.links = [];
         this.$body = $("#body");
         this.iconSize = "sm"
         this.settings = {};
-        this.downArrowIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>`;
-        this.upArrowIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-md"><path d="m18 15-6-6-6 6"/></svg>`
 
-        this.sidebarLinks = [];
+        this.downArrowIcon = frappe.utils.icon("down", "sm");
+        this.upArrowIcon = frappe.utils.icon("up-line", "sm");
 
         this.fetch_sidebar_data().then((response) => {
             const { settings, data } = response;
             this.settings = settings;
             this.iconSize = settings.menu_icons_size || "sm";
-            this.sidebarLinks = data;
+            this.links = data;
             this.sidebarSettings = settings;
 
             frappe.run_serially([
@@ -21,40 +20,44 @@ class Sidebar {
                 () => this.render_sidebar(),
             ])
         })
+
     }
     setup_mobile_menu() {
-        const self = this
-        if (!$("#mobile-menu-btn").length) {
-            const $menuBtn = $(`<div id="mobile-menu-btn" >${frappe.utils.icon("menu", 'md')}</div>`);
-            $menuBtn.click(function () {
-                self.$sidebarWrapper.toggleClass("show-mobile");
-            })
-
-            $(".navbar.navbar-expand .container").prepend($menuBtn);
-        }
+        if ($("#mobile-menu-btn").length) { return }
+        const $menuBtn = $(`<div id="mobile-menu-btn" >${frappe.utils.icon("menu", 'md')}</div>`);
+        $menuBtn.click(() => {
+            this.$sidebarWrapper.toggleClass("show-mobile");
+        })
+        $(".navbar.navbar-expand .container").prepend($menuBtn);
     }
-    render_sidebar() {
 
+    render_sidebar() {
         const $sidebar = $(`<div class="pg-sidebar"></div>`);
         const $nav = $(`<div class="pg-sidebar__nav"></div>`);
 
-        this.sidebarLinks?.forEach(val => {
+        this.links?.forEach(val => {
             $nav.append(this.make_nav_element(val));
         })
 
         $sidebar.append($nav);
-        this.$sidebarWrapper.append($sidebar);
 
+        this.$sidebarWrapper.append($sidebar);
+        this.handle_sidebar_outside_click();
+    }
+
+    handle_sidebar_outside_click() {
         if (window.innerWidth <= 768) {
             document.body.addEventListener("click", (event) => {
-                console.log("event")
-                if (!event.target.closest("#mobile-menu-btn") && !event.target.closest(".left-main-sidebar") && $(".left-main-sidebar").hasClass("show-mobile")) {
+                if (!event.target.closest("#mobile-menu-btn") &&
+                    !event.target.closest(".left-main-sidebar") &&
+                    $(".left-main-sidebar").hasClass("show-mobile")
+                ) {
                     $(".left-main-sidebar").removeClass("show-mobile")
                 }
             });
-
         }
     }
+
 
     fetch_sidebar_data() {
         return new Promise(function (resolve, reject,) {
@@ -72,35 +75,41 @@ class Sidebar {
     }
 
 
-    make_nav_element(data, showIcon = true) {
+    make_nav_element(data, icon = true) {
         const self = this;
+        const settings = this.settings;
+        const showIcon = !icon ? "hide" : ""
+        const { childs } = data;
+
         const $wrapper = $(`<div class="pg-sidebar__nav-wrapper ${window.location.pathname == data.url ? "active" : ""} "></div>`)
-        let $element = $(`<div class="pg-sidebar__nav-element">            
-            <div class="element-icon ${!showIcon ? "hide" : ""}">
-            ${frappe.utils.icon(data?.icon || "folder-normal",)}
+
+        let $element = $(`<div class="pg-sidebar__nav-element">         
+            <div class="element-icon ${showIcon}">
+                ${frappe.utils.icon(data?.icon || "folder-normal",)}
             </div>
                 <div class="element-label">${__(data.label)}</div>
             </div>`);
 
-        if (this.settings?.menu_style_type == "Tree" && data.childs) {
-            const $childs = $(`<div class="pg-sidebar__nav-childs hide"></div>`)
-            data.childs.forEach(child => {
-                $childs.append(this.make_nav_element(child, this.sidebarSettings?.show_sub_menu_icon))
+        if (settings.menu_style_type == "Tree" && childs) {
+            const $childs = $(`<div class="pg-sidebar__nav-childs hide"></div>`);
+
+            childs.forEach(child => {
+                $childs.append(this.make_nav_element(child, settings.show_sub_menu_icon));
             })
+
             $wrapper.append($childs);
+
             $element = $(`<div class="pg-sidebar__nav-element">
-            <div class="element-icon ${!showIcon ? "hide" : ""} ">
+            <div class="element-icon ${showIcon} ">
                 ${frappe.utils.icon(data?.icon || "folder-normal")}
             </div>
-            
                 <div class="element-label__wrapper">
                     <div class="element-label">${__(data.label)}</div>
                     <div class="nav-element-action">
                         ${this.downArrowIcon}
                     </div>
                 </div>
-            </div>
-            `);
+            </div>`);
 
             $element.find(".nav-element-action").click(function () {
                 self.handle_navitem_click($(this));
@@ -108,11 +117,8 @@ class Sidebar {
         }
 
 
-        $($element).find(".element-label").click(function () {
-            self.$sidebarWrapper.toggleClass("show-mobile");
-        })
-
-        $element.click(function () {
+        $($element).find(".element-label").click(() => {
+            this.$sidebarWrapper.toggleClass("show-mobile");
             $(".pg-sidebar__nav-element").removeClass("active");
             $element.addClass("active");
             frappe.set_route(data.url);
@@ -125,6 +131,7 @@ class Sidebar {
     handle_navitem_click($button) {
         const $childWrapper = $button.parent().parent().parent().find(".pg-sidebar__nav-childs");
         $childWrapper.toggleClass("hide");
+
         if ($childWrapper.hasClass("hide")) {
             $button.html(this.downArrowIcon);
         }
@@ -285,7 +292,6 @@ class AdriaticTheme {
 
             $searchBar.hide();
             $(document).on("click", function (event) {
-
                 const isClickInsideSearchBar = $searchBar.is(event.target) || $searchBar.has(event.target).length > 0;
                 const isClickOnOpenButton = $openSearchBoxBtn.is(event.target) || $openSearchBoxBtn.has(event.target).length > 0;
 
@@ -346,6 +352,7 @@ class AdriaticTheme {
             if (!show_breadcrumbs) {
                 $("#navbar-breadcrumbs").remove();
             }
+
             if (!show_search_box) {
                 $(".search-bar").remove();
             }

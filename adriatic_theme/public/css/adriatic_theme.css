@@ -223,9 +223,9 @@ input[type=checkbox]:disabled:checked {
     display: flex;
     gap: .5rem;
     align-items: center;
-    padding: .5rem;
     border-radius: .5rem;
     margin-bottom: .25rem;
+    padding-inline: .5rem;
 }
 
 .pg-sidebar__nav-element .element-icon .icon {
@@ -238,6 +238,8 @@ input[type=checkbox]:disabled:checked {
     font-size: var(--sidebar-font-size) !important;
     font-family: var(--sidebar-font-family) !important;
     font-weight: var(--sidebar-font-weight) !important;
+    padding: .5rem;
+    flex: auto;
 }
 
 .pg-sidebar__nav-wrapper .element-label__wrapper {
